@@ -42,7 +42,7 @@ body {
 .gallery-hero {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 320px;
   overflow: hidden;
   background: #1a1a1a;
 }
@@ -333,16 +333,16 @@ body {
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
-@media (min-width: 768px) { .projects-grid { grid-template-columns: 1fr 1fr 1fr; gap: 12px; } }
+@media (min-width: 768px) { .projects-grid { grid-template-columns: 1fr 1fr 1fr; gap: 14px; } }
 
 .project-card {
   border-radius: var(--radius);
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2.5;
   background: var(--gray-100);
   transition: transform .2s;
 }
@@ -591,9 +591,9 @@ body {
 }
 .rating-bar-track {
   flex: 1;
-  height: 8px;
+  height: 10px;
   background: var(--gray-100);
-  border-radius: 4px;
+  border-radius: 5px;
   overflow: hidden;
 }
 .rating-bar-fill {
@@ -992,9 +992,10 @@ body {
   <!-- ABOUT US -->
   <div class="section" id="about">
     <h2 class="section-title">About Us</h2>
-    <p class="bio-text" id="bioText">
+    <p class="bio-text" id="bioText" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
       I'm Mike Rivera, a second-generation handyman serving Austin and surrounding areas for over 12 years. My dad taught me everything from basic plumbing to full kitchen remodels, and I've been perfecting my craft ever since. I specialize in kitchen and bathroom renovations, drywall work, painting, and general home repairs. Every job gets my full attention — I treat your home like it's mine. I'm fully insured, show up on time, and always clean up after the work is done. No job too small, no detail overlooked.
     </p>
+    <button class="bio-toggle" onclick="const b=document.getElementById('bioText'); const expanded=b.style.webkitLineClamp==='unset'; b.style.webkitLineClamp=expanded?'4':'unset'; b.style.overflow=expanded?'hidden':'visible'; this.textContent=expanded?'Read More':'Show Less';">Read More</button>
 
     <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 14px;">
       <div>
