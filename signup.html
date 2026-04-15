@@ -182,28 +182,98 @@ body {
   display: block;
 }
 
-/* ===== SAVE IT SHARE IT ===== */
-.save-share-section {
+/* ===== NETWORK SECTION (combined) ===== */
+.network-section {
   text-align: center;
-  padding: 48px 0;
+  padding: 48px 0 0;
   background: var(--bg);
   margin: 0 -20px;
   padding-left: 20px;
   padding-right: 20px;
 }
-.save-share-section h2 {
+.network-section h2 {
   font-size: 28px;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -.5px;
   margin-bottom: 8px;
 }
-.save-share-section p {
+.network-section > p {
   font-size: 15px;
   color: var(--gray-500);
-  max-width: 380px;
+  max-width: 400px;
   margin: 0 auto 32px;
   line-height: 1.6;
+}
+
+/* Anti-Thumbtack block */
+.not-thumbtack {
+  max-width: 440px;
+  margin: 0 auto 36px;
+  text-align: left;
+}
+.not-thumbtack-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.not-thumbtack-item:last-child { margin-bottom: 0; }
+.nt-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+}
+.nt-icon.x {
+  background: #fde8e8;
+  color: var(--red);
+}
+.nt-icon.check {
+  background: #e8f5ee;
+  color: var(--green);
+}
+.nt-text {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.5;
+  padding-top: 4px;
+}
+.nt-text strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.network-divider {
+  max-width: 440px;
+  margin: 32px auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.network-divider::before,
+.network-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+.network-divider span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* How it works steps */
+.network-steps-label {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -.3px;
+  margin-bottom: 24px;
 }
 
 .share-steps {
@@ -212,6 +282,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-bottom: 48px;
 }
 .share-step {
   display: flex;
@@ -725,10 +796,31 @@ body {
 
 </div>
 
-<!-- ===== SAVE IT. SHARE IT. ===== -->
-<div class="save-share-section">
-  <h2>Save it. Share it.</h2>
-  <p>Your contact card goes everywhere you go. One tap to save, one tap to share.</p>
+<!-- ===== YOUR NETWORK. YOUR RULES. ===== -->
+<div class="network-section">
+  <h2>This isn't Thumbtack.</h2>
+  <p>Stop competing with 10 other guys for the same lead. Share your page with the people who already know your work. Let them spread the word.</p>
+
+  <div class="not-thumbtack">
+    <div class="not-thumbtack-item">
+      <div class="nt-icon x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+      <div class="nt-text"><strong>No strangers bidding you down.</strong> You only share your page with people you choose.</div>
+    </div>
+    <div class="not-thumbtack-item">
+      <div class="nt-icon x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+      <div class="nt-text"><strong>No "we sent your info to 5 other contractors."</strong> Your customers share you with people they trust.</div>
+    </div>
+    <div class="not-thumbtack-item">
+      <div class="nt-icon x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+      <div class="nt-text"><strong>No algorithm deciding who sees you.</strong> Every person who gets your contact was put there by someone who trusts you.</div>
+    </div>
+    <div class="not-thumbtack-item">
+      <div class="nt-icon check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="nt-text"><strong>Word-of-mouth — with a page behind it.</strong> The thing that already works for every good contractor, but professional.</div>
+    </div>
+  </div>
+
+  <div class="network-divider"><span>How it works</span></div>
 
   <div class="share-steps">
     <div class="share-step">
