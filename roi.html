@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your $99 Pays For Itself | HandyJims</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1C2B3A;
+  --amber: #D4873F;
+  --green: #2D7A4F;
+  --red: #E84545;
+  --bg: #F5F5F3;
+  --white: #FFFFFF;
+  --gray-100: #F0EFED;
+  --gray-200: #E5E4E2;
+  --gray-400: #9B9A98;
+  --gray-500: #6B6A68;
+  --gray-600: #4A4948;
+  --gray-700: #2A2928;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--gray-700);
+  -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.header img { width: 30px; height: 30px; border-radius: 6px; }
+.header span { font-size: 17px; font-weight: 800; color: var(--navy); }
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 0 32px;
+}
+.hero-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.hero-price .old {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-decoration: line-through;
+}
+.hero-price .current {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -2px;
+}
+.hero-price .label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+  background: #e8f5ee;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.hero h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+
+/* ROI Calculator */
+.roi-card {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 28px 24px;
+  margin-bottom: 32px;
+  color: var(--white);
+}
+.roi-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+.roi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.roi-row:last-child { border-bottom: none; }
+.roi-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,.7);
+}
+.roi-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+}
+.roi-value.amber { color: var(--amber); }
+.roi-value.green { color: #4ade80; }
+
+.roi-divider {
+  height: 1px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 0;
+}
+
+.roi-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+}
+.roi-total-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+}
+.roi-total-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4ade80;
+  letter-spacing: -1px;
+}
+
+/* Share Flow */
+.share-section {
+  padding: 32px 0;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: -.3px;
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Step cards */
+.step {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 48px;
+  bottom: -20px;
+  width: 2px;
+  background: var(--gray-200);
+}
+.step:last-child::before { display: none; }
+
+.step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.step-content { flex: 1; padding-top: 2px; }
+.step-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.step-desc {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+
+/* Viral math */
+.viral-card {
+  background: var(--gray-100);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 28px 0;
+}
+.viral-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.viral-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.viral-level {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.viral-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.viral-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+}
+.viral-dot.you { background: var(--amber); color: white; }
+.viral-dot.l1 { background: var(--navy); color: white; }
+.viral-dot.l2 { background: var(--green); color: white; }
+.viral-dot.l3 { background: #8b5cf6; color: white; }
+
+.viral-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  min-width: 90px;
+}
+.viral-count {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+/* Arrow connector */
+.viral-arrow {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+}
+.viral-arrow svg { color: var(--gray-400); }
+
+/* Comparison */
+.compare-section {
+  padding: 32px 0;
+  border-top: 1px solid var(--gray-200);
+}
+.compare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.compare-what {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+.compare-cost {
+  font-size: 14px;
+  font-weight: 700;
+}
+.compare-cost.bad { color: var(--red); }
+.compare-cost.good { color: var(--green); }
+
+/* CTA */
+.cta-section {
+  padding: 32px 0 48px;
+  text-align: center;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--amber);
+  color: var(--white);
+  border: none;
+  padding: 16px 0;
+  border-radius: 24px;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(212,135,63,.3);
+  transition: opacity .15s;
+  text-decoration: none;
+}
+.cta-btn:hover { opacity: .9; }
+.cta-sub {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <img src="logo.jpg" alt="HandyJims">
+  <span>HandyJims</span>
+</header>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-price">
+      <span class="old">$250</span>
+      <span class="current">$99</span>
+      <span class="label">Lifetime</span>
+    </div>
+    <h1>One job pays for this.<br>Everything after is profit.</h1>
+    <p>Your professional page, forever. No monthly fees. No contracts. No BS.</p>
+  </div>
+
+  <!-- ROI Calculator -->
+  <div class="roi-card">
+    <div class="roi-title">The Math</div>
+    <div class="roi-row">
+      <span class="roi-label">Your HandyJims page</span>
+      <span class="roi-value">$99</span>
+    </div>
+    <div class="roi-row">
+      <span class="roi-label">Average handyman job</span>
+      <span class="roi-value amber">$350</span>
+    </div>
+    <div class="roi-row">
+      <span class="roi-label">Jobs from shares in Year 1</span>
+      <span class="roi-value amber">3-5</span>
+    </div>
+    <div class="roi-divider"></div>
+    <div class="roi-total">
+      <span class="roi-total-label">Year 1 revenue from shares</span>
+      <span class="roi-total-value">$1,050+</span>
+    </div>
+    <div style="text-align: center; margin-top: 12px;">
+      <span style="font-size: 13px; color: rgba(255,255,255,.5);">That's a <strong style="color: #4ade80;">10x return</strong> on $99</span>
+    </div>
+  </div>
+
+  <!-- How Sharing Works -->
+  <div class="share-section">
+    <h2 class="section-title">How it spreads</h2>
+    <p class="section-sub">Your profile link rides along in every contact card you share. One tap, and customers have your number AND your portfolio.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">You save your own contact</div>
+        <div class="step-desc">Tap "Save to Contacts" on your profile. Now you're in your own phone as "Mike Rivera — HandyJims" with your profile link attached.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Customer finds you</div>
+        <div class="step-desc">Neighbor asks for a handyman. Your customer opens their contacts, shares your card. The recipient gets your name, number, AND your HandyJims link.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">They see your work</div>
+        <div class="step-desc">They tap the link, see your photos, reviews, credentials. They're not hiring a stranger — they're hiring a verified pro their friend recommended.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">They save and share too</div>
+        <div class="step-desc">New customer saves your contact. Next time THEY get asked, they share it again. Your profile spreads without you lifting a finger.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Viral Math Visual -->
+  <div class="viral-card">
+    <div class="viral-title">One share becomes many</div>
+    <div class="viral-tree">
+      <div class="viral-level">
+        <div class="viral-label">You share</div>
+        <div class="viral-dots">
+          <div class="viral-dot you" style="width:36px; height:36px; font-size:12px;">YOU</div>
+        </div>
+      </div>
+
+      <div class="viral-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+      <div class="viral-level">
+        <div class="viral-label">5 customers save it</div>
+        <div class="viral-dots">
+          <div class="viral-dot l1">C1</div>
+          <div class="viral-dot l1">C2</div>
+          <div class="viral-dot l1">C3</div>
+          <div class="viral-dot l1">C4</div>
+          <div class="viral-dot l1">C5</div>
+        </div>
+      </div>
+
+      <div class="viral-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+      <div class="viral-level">
+        <div class="viral-label">Each shares to 2-3</div>
+        <div class="viral-dots">
+          <div class="viral-dot l2">1</div>
+          <div class="viral-dot l2">2</div>
+          <div class="viral-dot l2">3</div>
+          <div class="viral-dot l2">4</div>
+          <div class="viral-dot l2">5</div>
+          <div class="viral-dot l2">6</div>
+          <div class="viral-dot l2">7</div>
+          <div class="viral-dot l2">8</div>
+          <div class="viral-dot l2">9</div>
+          <div class="viral-dot l2">10</div>
+          <div class="viral-dot l2">11</div>
+          <div class="viral-dot l2">12</div>
+        </div>
+      </div>
+
+      <div class="viral-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+      <div class="viral-level">
+        <div class="viral-label">And it keeps going</div>
+        <div class="viral-dots">
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+          <div class="viral-dot l3">+</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 16px;">
+      <span style="font-size: 14px; font-weight: 700; color: var(--navy);">Your contact card is on 30+ phones within months</span>
+    </div>
+  </div>
+
+  <!-- What $99 replaces -->
+  <div class="compare-section">
+    <h2 class="section-title">What you'd pay elsewhere</h2>
+    <p class="section-sub" style="margin-bottom: 20px;">Every month. Forever. HandyJims is once.</p>
+
+    <div class="compare-row">
+      <span class="compare-what">Thumbtack leads</span>
+      <span class="compare-cost bad">$15-50 per lead/mo</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-what">Angi listing</span>
+      <span class="compare-cost bad">$300+/year</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-what">Simple website</span>
+      <span class="compare-cost bad">$50-150/year</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-what">500 business cards</span>
+      <span class="compare-cost bad">$80-120</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-what">Yelp advertising</span>
+      <span class="compare-cost bad">$300-1,000/mo</span>
+    </div>
+    <div class="compare-row" style="border-bottom: 2px solid var(--green); padding-bottom: 16px;">
+      <span class="compare-what" style="font-weight: 800; color: var(--navy);">HandyJims</span>
+      <span class="compare-cost good" style="font-size: 18px;">$99 once. Forever.</span>
+    </div>
+  </div>
+
+  <!-- What you get -->
+  <div style="padding: 32px 0; border-top: 1px solid var(--gray-200);">
+    <h2 class="section-title">What's included</h2>
+    <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">Your professional page</div>
+          <div style="font-size: 13px; color: var(--gray-500);">handyjims.com/your-name — looks like you hired a designer</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">Unlimited photos</div>
+          <div style="font-size: 13px; color: var(--gray-500);">Show off your best work. Before/after, project galleries.</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">Verified reviews</div>
+          <div style="font-size: 13px; color: var(--gray-500);">Double-verified via SMS. No fakes. Real customers only.</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">Save & Share contact card</div>
+          <div style="font-size: 13px; color: var(--gray-500);">One tap — customers save you AND share you with friends.</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">Pay Me page</div>
+          <div style="font-size: 13px; color: var(--gray-500);">Venmo, Cash App, PayPal, Zelle — all in one link.</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: var(--navy);">No monthly fees. Ever.</div>
+          <div style="font-size: 13px; color: var(--gray-500);">Pay once, it's yours forever. We handle the hosting and updates.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <a href="#" class="cta-btn">Get Your Page — $99</a>
+    <div class="cta-sub">One-time payment. No credit card recurring. No contracts.</div>
+  </div>
+
+</div>
+
+</body>
+</html>
