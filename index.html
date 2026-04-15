@@ -889,7 +889,7 @@ body {
         transition: opacity .15s;
       ">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-        Save & Share
+        <span id="saveShareLabel">Save & Share</span>
       </button>
     </div>
 
@@ -1335,6 +1335,14 @@ document.getElementById('lightbox').addEventListener('click', e => {
 });
 
 // Actions
+const SLUG = 'mike-rivera';
+const SAVED_KEY = `hj_saved_${SLUG}`;
+
+// On load, check if already saved
+if (localStorage.getItem(SAVED_KEY)) {
+  document.getElementById('saveShareLabel').textContent = 'Share';
+}
+
 async function handleSaveAndShare() {
   const vcf = [
     'BEGIN:VCARD','VERSION:3.0',
@@ -1344,13 +1352,21 @@ async function handleSaveAndShare() {
     'TITLE:Handyman','NOTE:Kitchen Remodel\\, Bathroom\\, Drywall\\, Painting\\, Plumbing\\nHandyJims.com/mike-rivera',
     'END:VCARD'
   ].join('\n');
-  // Download vCard
-  const blob = new Blob([vcf], { type: 'text/vcard' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'mike-rivera.vcf'; a.click();
-  URL.revokeObjectURL(url);
-  // Then open native share
+  const alreadySaved = localStorage.getItem(SAVED_KEY);
+
+  if (!alreadySaved) {
+    // First time: download vCard
+    const blob = new Blob([vcf], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'mike-rivera.vcf'; a.click();
+    URL.revokeObjectURL(url);
+    // Mark as saved
+    localStorage.setItem(SAVED_KEY, Date.now().toString());
+    document.getElementById('saveShareLabel').textContent = 'Share';
+  }
+
+  // Always open share sheet
   if (navigator.share) {
     try {
       await navigator.share({
