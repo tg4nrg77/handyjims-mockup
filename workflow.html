@@ -82,32 +82,37 @@ body {
   margin-bottom: 40px;
 }
 
-/* Horizontal flow diagram */
+/* Flow diagram — responsive grid */
 .flow-diagram {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 12px;
   padding: 0 0 24px;
-  -webkit-overflow-scrolling: touch;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .flow-diagram {
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 100%;
+    gap: 16px 8px;
+  }
 }
 .flow-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 120px;
-  flex-shrink: 0;
   position: relative;
 }
 .flow-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 2;
 }
@@ -125,7 +130,7 @@ body {
   font-weight: 700;
   color: var(--navy);
   text-align: center;
-  max-width: 100px;
+  line-height: 1.3;
 }
 .flow-time {
   font-size: 10px;
@@ -133,11 +138,7 @@ body {
   margin-top: 2px;
 }
 .flow-arrow {
-  display: flex;
-  align-items: center;
-  padding-top: 16px;
-  color: var(--gray-300);
-  flex-shrink: 0;
+  display: none; /* arrows hidden — grid layout handles the flow */
 }
 
 /* ===== SCREEN MOCKUPS ===== */
