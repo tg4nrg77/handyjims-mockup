@@ -82,27 +82,21 @@ body {
   margin-bottom: 40px;
 }
 
-/* Flow diagram — responsive grid */
+/* Flow diagram — horizontal with arrows */
 .flow-diagram {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
   padding: 0 0 24px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-@media (min-width: 700px) {
-  .flow-diagram {
-    grid-template-columns: repeat(6, 1fr);
-    max-width: 100%;
-    gap: 16px 8px;
-  }
+  flex-wrap: wrap;
 }
 .flow-step {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  width: 80px;
 }
 .flow-icon {
   width: 52px;
@@ -138,7 +132,11 @@ body {
   margin-top: 2px;
 }
 .flow-arrow {
-  display: none; /* arrows hidden — grid layout handles the flow */
+  display: flex;
+  align-items: center;
+  padding-top: 14px;
+  color: var(--gray-300);
+  flex-shrink: 0;
 }
 
 /* ===== SCREEN MOCKUPS ===== */
