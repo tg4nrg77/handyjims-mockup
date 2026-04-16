@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HandyJims — Full Workflow: Signup to Live Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1C2B3A;
+  --amber: #D4873F;
+  --green: #2D7A4F;
+  --red: #E84545;
+  --bg: #F5F5F3;
+  --white: #FFFFFF;
+  --gray-50: #FAFAF9;
+  --gray-100: #F0EFED;
+  --gray-200: #E5E4E2;
+  --gray-300: #D1D0CE;
+  --gray-400: #9B9A98;
+  --gray-500: #6B6A68;
+  --gray-600: #4A4948;
+  --gray-700: #2A2928;
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--gray-700);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--navy);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.3px;
+}
+.header-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== FLOW DIAGRAM ===== */
+.diagram-section {
+  padding: 48px 0 32px;
+}
+.diagram-section h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -1px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.diagram-section > p {
+  font-size: 15px;
+  color: var(--gray-500);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Horizontal flow diagram */
+.flow-diagram {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding: 0 0 24px;
+  -webkit-overflow-scrolling: touch;
+}
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  position: relative;
+}
+.flow-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+.flow-icon.signup { background: var(--amber); color: white; }
+.flow-icon.pay { background: #4ade80; color: white; }
+.flow-icon.profile { background: var(--navy); color: white; }
+.flow-icon.photos { background: #8b5cf6; color: white; }
+.flow-icon.review { background: #3b82f6; color: white; }
+.flow-icon.live { background: var(--green); color: white; }
+.flow-icon.share { background: var(--red); color: white; }
+.flow-icon.grow { background: var(--amber); color: white; }
+
+.flow-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: center;
+  max-width: 100px;
+}
+.flow-time {
+  font-size: 10px;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  color: var(--gray-300);
+  flex-shrink: 0;
+}
+
+/* ===== SCREEN MOCKUPS ===== */
+.screens-section {
+  padding: 32px 0 64px;
+}
+.screen-block {
+  margin-bottom: 48px;
+}
+.screen-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.screen-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+}
+.screen-header-text h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -.3px;
+}
+.screen-header-text p {
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+/* Phone frame for mockup screens */
+.phone-frame {
+  max-width: 375px;
+  margin: 0 auto;
+  background: var(--navy);
+  border-radius: 32px;
+  padding: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+}
+.phone-screen {
+  background: var(--white);
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* Shared form styles inside phone screens */
+.mock-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.mock-nav-logo {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.mock-nav-step {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-400);
+}
+.mock-body {
+  padding: 28px 20px;
+}
+.mock-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+.mock-subtitle {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.mock-field {
+  margin-bottom: 16px;
+}
+.mock-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 6px;
+}
+.mock-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--gray-700);
+  background: var(--gray-50);
+}
+.mock-input:focus {
+  border-color: var(--amber);
+  outline: none;
+}
+.mock-input.filled {
+  border-color: var(--gray-200);
+  color: var(--gray-700);
+  background: var(--white);
+}
+.mock-input.placeholder {
+  color: var(--gray-400);
+}
+.mock-select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--gray-700);
+  background: var(--gray-50);
+  appearance: none;
+}
+.mock-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 24px;
+}
+.mock-btn.primary {
+  background: var(--amber);
+  color: white;
+  box-shadow: 0 4px 16px rgba(212,135,63,.25);
+}
+.mock-btn.green {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 4px 16px rgba(45,122,79,.25);
+}
+.mock-btn.navy {
+  background: var(--navy);
+  color: white;
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 4px;
+  background: var(--gray-100);
+  width: 100%;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--amber);
+  border-radius: 2px;
+  transition: width .3s;
+}
+
+/* Auth screen styles */
+.auth-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.auth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-700);
+  background: var(--white);
+  cursor: pointer;
+  font-family: inherit;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+.auth-divider span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-400);
+}
+
+/* Photo grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.photo-thumb {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--gray-300);
+  overflow: hidden;
+}
+.photo-thumb.filled {
+  background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+}
+.photo-thumb.add {
+  border: 2px dashed var(--gray-300);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Payment method chips */
+.payment-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.pay-chip {
+  padding: 10px 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-600);
+  background: var(--white);
+  cursor: pointer;
+}
+.pay-chip.active {
+  border-color: var(--amber);
+  background: #fef3e5;
+  color: var(--amber);
+}
+
+/* Review preview */
+.preview-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.preview-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.preview-trade {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+}
+.preview-stats {
+  display: flex;
+  gap: 16px;
+}
+.preview-stat {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.preview-stat strong {
+  color: var(--navy);
+}
+
+/* Live page celebration */
+.celebrate {
+  text-align: center;
+  padding: 40px 20px;
+}
+.celebrate-emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.celebrate h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+.celebrate p {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+.celebrate-url {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -.2px;
+}
+.celebrate-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Share screen */
+.share-method {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.share-method:last-child { border-bottom: none; }
+.share-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.share-icon-circle.text { background: #dcfce7; color: var(--green); }
+.share-icon-circle.nextdoor { background: #dcfce7; color: var(--green); }
+.share-icon-circle.facebook { background: #dbeafe; color: #2563eb; }
+.share-icon-circle.copy { background: #f3e8ff; color: #8b5cf6; }
+.share-icon-circle.contact { background: #fef3e5; color: var(--amber); }
+.share-method-text {
+  flex: 1;
+}
+.share-method-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.share-method-desc {
+  font-size: 12px;
+  color: var(--gray-400);
+}
+.share-method-arrow {
+  color: var(--gray-300);
+}
+
+/* Dashboard screen */
+.dash-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.dash-stat {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+}
+.dash-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.dash-stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.dash-nudge {
+  background: #fef3e5;
+  border: 1px solid #fcd9b0;
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.dash-nudge-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 2px;
+}
+.dash-nudge-text {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+.dash-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.dash-action:last-child { border-bottom: none; }
+.dash-action-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.dash-action-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
+.dash-action-arrow {
+  color: var(--gray-300);
+  font-size: 14px;
+}
+
+/* Connector between screens */
+.screen-connector {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+.connector-arrow {
+  width: 2px;
+  height: 40px;
+  background: var(--gray-300);
+  position: relative;
+}
+.connector-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--gray-300);
+}
+
+/* Stripe mock */
+.stripe-mock {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.stripe-mock-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+.stripe-price-big {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -1px;
+}
+.stripe-price-old {
+  font-size: 16px;
+  color: var(--gray-400);
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+.stripe-price-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: #e8f5ee;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+  vertical-align: super;
+}
+
+/* Service tags */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.service-tag {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  color: var(--gray-600);
+}
+.service-tag.selected {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+
+/* Slug preview */
+.slug-preview {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.slug-prefix {
+  padding: 12px 4px 12px 14px;
+  font-size: 14px;
+  color: var(--gray-400);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.slug-value {
+  padding: 12px 14px 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  flex: 1;
+  min-width: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div>
+    <div class="header-title">HandyJims — Full Workflow</div>
+    <div class="header-sub">Signup → Profile → Live Page → Growth</div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ===== FLOW DIAGRAM ===== -->
+<div class="diagram-section">
+  <h1>The Complete Journey</h1>
+  <p>From "I heard about this" to "my phone is ringing" — every step.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-step">
+      <div class="flow-icon signup">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+      </div>
+      <div class="flow-label">Sign Up</div>
+      <div class="flow-time">30 sec</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon pay">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div class="flow-label">Pay $99</div>
+      <div class="flow-time">1 min</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon profile">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="flow-label">Build Profile</div>
+      <div class="flow-time">3-5 min</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon photos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <div class="flow-label">Add Photos</div>
+      <div class="flow-time">2-5 min</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon review">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="flow-label">Preview</div>
+      <div class="flow-time">1 min</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon live">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="flow-label">Go Live!</div>
+      <div class="flow-time">Instant</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon share">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </div>
+      <div class="flow-label">Share It</div>
+      <div class="flow-time">Ongoing</div>
+    </div>
+    <div class="flow-arrow">
+      <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </div>
+    <div class="flow-step">
+      <div class="flow-icon grow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div class="flow-label">Grow</div>
+      <div class="flow-time">Autopilot</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 1: SIGN UP ===== -->
+<div class="screens-section">
+
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--amber);">1</div>
+    <div class="screen-header-text">
+      <h2>Sign Up</h2>
+      <p>Clerk handles auth — Google, email, or phone. 30 seconds.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 12%;"></div></div>
+      <div class="mock-body">
+        <div class="mock-title">Get your page.</div>
+        <div class="mock-subtitle">One link for everything — photos, reviews, payments, contact info. Takes 5 minutes.</div>
+        
+        <div class="auth-options">
+          <button class="auth-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Continue with Google
+          </button>
+          <button class="auth-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Continue with Phone
+          </button>
+        </div>
+        
+        <div class="auth-divider"><span>or</span></div>
+        
+        <div class="mock-field">
+          <div class="mock-label">Email</div>
+          <input type="text" class="mock-input placeholder" value="mike@email.com" readonly>
+        </div>
+        <button class="mock-btn primary">Continue</button>
+        
+        <p style="font-size: 11px; color: var(--gray-400); text-align: center; margin-top: 16px;">By signing up you agree to Terms of Service</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 2: PAYMENT ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: #4ade80;">2</div>
+    <div class="screen-header-text">
+      <h2>Pay $99 — One Time, Forever</h2>
+      <p>Stripe Checkout. Card, Apple Pay, Google Pay. Done in 60 seconds.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 25%;"></div></div>
+      <div class="mock-body">
+        <div class="stripe-mock">
+          <div class="stripe-mock-label">Your HandyJims Page</div>
+          <div>
+            <span class="stripe-price-big">$99</span>
+            <span class="stripe-price-old">$250</span>
+            <span class="stripe-price-tag">Lifetime</span>
+          </div>
+          <p style="font-size: 12px; color: var(--gray-400); margin-top: 6px;">One-time payment. No monthly fees. No contracts.</p>
+        </div>
+        
+        <div class="mock-field">
+          <div class="mock-label">Card Number</div>
+          <input type="text" class="mock-input filled" value="4242 4242 4242 4242" readonly>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="mock-field">
+            <div class="mock-label">Expiry</div>
+            <input type="text" class="mock-input filled" value="12 / 28" readonly>
+          </div>
+          <div class="mock-field">
+            <div class="mock-label">CVC</div>
+            <input type="text" class="mock-input filled" value="123" readonly>
+          </div>
+        </div>
+        
+        <button class="mock-btn green">Pay $99 — Get Your Page</button>
+        
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span style="font-size: 11px; color: var(--gray-400);">Secured by Stripe. 256-bit encryption.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 3: BUILD PROFILE ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--navy);">3</div>
+    <div class="screen-header-text">
+      <h2>Build Your Profile</h2>
+      <p>Name, trade, service area, bio. The basics that make your page real.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+      <div class="mock-nav">
+        <span class="mock-nav-logo">HandyJims</span>
+        <span class="mock-nav-step">Step 1 of 4</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-title">Tell us about you.</div>
+        <div class="mock-subtitle">This is what people see on your page.</div>
+        
+        <div class="mock-field">
+          <div class="mock-label">Full Name</div>
+          <input type="text" class="mock-input filled" value="Mike Rodriguez" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Business Name (optional)</div>
+          <input type="text" class="mock-input filled" value="Rodriguez Home Services" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Phone</div>
+          <input type="text" class="mock-input filled" value="(512) 555-0147" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Service Area</div>
+          <input type="text" class="mock-input filled" value="Austin, TX — 25 mile radius" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Your Page URL</div>
+          <div class="slug-preview">
+            <span class="slug-prefix">handyjims.com/</span>
+            <input type="text" class="slug-value" value="mike-rodriguez" readonly>
+          </div>
+        </div>
+        
+        <button class="mock-btn primary">Next: Your Trade</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 3B: TRADE & SERVICES ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--navy);">3b</div>
+    <div class="screen-header-text">
+      <h2>Select Your Trade & Services</h2>
+      <p>Tap what you do. These show as badges on your profile.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
+      <div class="mock-nav">
+        <span class="mock-nav-logo">HandyJims</span>
+        <span class="mock-nav-step">Step 2 of 4</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-title">What do you do?</div>
+        <div class="mock-subtitle">Select all that apply. You can always change this later.</div>
+        
+        <div class="mock-label" style="margin-bottom: 10px;">Primary Trade</div>
+        <div class="service-tags" style="margin-bottom: 24px;">
+          <span class="service-tag selected">General Handyman</span>
+          <span class="service-tag">Plumber</span>
+          <span class="service-tag">Electrician</span>
+          <span class="service-tag">Painter</span>
+          <span class="service-tag">Carpenter</span>
+          <span class="service-tag">HVAC</span>
+          <span class="service-tag">Landscaper</span>
+          <span class="service-tag">Roofer</span>
+        </div>
+        
+        <div class="mock-label" style="margin-bottom: 10px;">Services You Offer</div>
+        <div class="service-tags">
+          <span class="service-tag selected">Kitchen Remodels</span>
+          <span class="service-tag selected">Bathroom Remodels</span>
+          <span class="service-tag selected">Drywall Repair</span>
+          <span class="service-tag selected">Plumbing</span>
+          <span class="service-tag">Electrical</span>
+          <span class="service-tag selected">Painting</span>
+          <span class="service-tag">Flooring</span>
+          <span class="service-tag">Deck Building</span>
+          <span class="service-tag">Fence Repair</span>
+          <span class="service-tag">Tile Work</span>
+          <span class="service-tag">Pressure Washing</span>
+        </div>
+        
+        <button class="mock-btn primary">Next: Payment Methods</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 3C: PAYMENT METHODS ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--navy);">3c</div>
+    <div class="screen-header-text">
+      <h2>How Customers Pay You</h2>
+      <p>Set up your Pay Me page — links to your Venmo, Cash App, etc.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+      <div class="mock-nav">
+        <span class="mock-nav-logo">HandyJims</span>
+        <span class="mock-nav-step">Step 3 of 4</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-title">Get paid your way.</div>
+        <div class="mock-subtitle">Add your payment links. Customers see these on your Pay Me page.</div>
+        
+        <div class="mock-label" style="margin-bottom: 10px;">Active Payment Methods</div>
+        <div class="payment-chips">
+          <span class="pay-chip active">Venmo</span>
+          <span class="pay-chip active">Cash App</span>
+          <span class="pay-chip active">Zelle</span>
+          <span class="pay-chip">PayPal</span>
+          <span class="pay-chip">Check</span>
+          <span class="pay-chip">Cash</span>
+        </div>
+        
+        <div class="mock-field">
+          <div class="mock-label">Venmo Username</div>
+          <input type="text" class="mock-input filled" value="@mike-rodriguez-atx" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Cash App Tag</div>
+          <input type="text" class="mock-input filled" value="$MikeRodriguezATX" readonly>
+        </div>
+        <div class="mock-field">
+          <div class="mock-label">Zelle Email or Phone</div>
+          <input type="text" class="mock-input filled" value="mike@rodriguezservices.com" readonly>
+        </div>
+        
+        <p style="font-size: 12px; color: var(--gray-400); margin-top: 8px;">Your Pay Me page: <strong style="color: var(--amber);">handyjims.com/mike-rodriguez/pay</strong></p>
+        
+        <button class="mock-btn primary">Next: Add Photos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 4: ADD PHOTOS ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: #8b5cf6;">4</div>
+    <div class="screen-header-text">
+      <h2>Add Project Photos</h2>
+      <p>Your work is your portfolio. Upload from phone camera roll.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+      <div class="mock-nav">
+        <span class="mock-nav-logo">HandyJims</span>
+        <span class="mock-nav-step">Step 4 of 4</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-title">Show off your work.</div>
+        <div class="mock-subtitle">Upload project photos. Before/after shots work great. You can always add more later.</div>
+        
+        <div class="photo-grid">
+          <div class="photo-thumb filled" style="background: linear-gradient(135deg, #8B7355, #A0926A);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="photo-thumb filled" style="background: linear-gradient(135deg, #6B8F9E, #8FB5C4);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="photo-thumb filled" style="background: linear-gradient(135deg, #9E8B6B, #C4B28F);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="photo-thumb filled" style="background: linear-gradient(135deg, #6B9E7A, #8FC4A0);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="photo-thumb add">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="photo-thumb add">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </div>
+        
+        <button class="auth-btn" style="width: 100%; margin-bottom: 12px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload from Camera Roll
+        </button>
+        
+        <p style="font-size: 12px; color: var(--gray-400); text-align: center;">4 photos uploaded. You can add more anytime from your dashboard.</p>
+        
+        <button class="mock-btn green">Preview My Page</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 5: PREVIEW ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: #3b82f6;">5</div>
+    <div class="screen-header-text">
+      <h2>Preview Your Page</h2>
+      <p>See exactly what customers will see. Edit anything before going live.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+      <div class="mock-body" style="padding: 20px 16px;">
+        <div class="preview-card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), #2d4a5e); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: 800;">MR</div>
+            <div>
+              <div class="preview-name">Mike Rodriguez</div>
+              <div class="preview-trade">General Handyman — Austin, TX</div>
+            </div>
+          </div>
+          <div class="preview-stats">
+            <div class="preview-stat"><strong>4</strong> photos</div>
+            <div class="preview-stat"><strong>5</strong> services</div>
+            <div class="preview-stat"><strong>3</strong> payment methods</div>
+          </div>
+        </div>
+        
+        <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px; margin-bottom: 12px;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
+            <div style="aspect-ratio: 1; border-radius: 6px; background: linear-gradient(135deg, #8B7355, #A0926A);"></div>
+            <div style="aspect-ratio: 1; border-radius: 6px; background: linear-gradient(135deg, #6B8F9E, #8FB5C4);"></div>
+            <div style="aspect-ratio: 1; border-radius: 6px; background: linear-gradient(135deg, #9E8B6B, #C4B28F);"></div>
+            <div style="aspect-ratio: 1; border-radius: 6px; background: linear-gradient(135deg, #6B9E7A, #8FC4A0);"></div>
+          </div>
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--gray-100); border-radius: 12px; color: var(--gray-600);">Kitchen Remodels</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--gray-100); border-radius: 12px; color: var(--gray-600);">Bathroom</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--gray-100); border-radius: 12px; color: var(--gray-600);">Drywall</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--gray-100); border-radius: 12px; color: var(--gray-600);">Plumbing</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--gray-100); border-radius: 12px; color: var(--gray-600);">Painting</span>
+        </div>
+        
+        <div style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: #e8f5ee; border-radius: var(--radius); margin-bottom: 16px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span style="font-size: 13px; font-weight: 700; color: var(--green);">Looking good! Ready to go live.</span>
+        </div>
+        
+        <button class="mock-btn primary" style="margin-top: 8px;">
+          Edit Something
+        </button>
+        <button class="mock-btn green" style="margin-top: 10px; font-size: 18px;">
+          Publish My Page
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 6: YOU'RE LIVE ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--green);">6</div>
+    <div class="screen-header-text">
+      <h2>You're Live!</h2>
+      <p>Page is published. Time to share it with everyone.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+      <div class="celebrate">
+        <div class="celebrate-emoji">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2>Your page is live!</h2>
+        <p>Share it with your customers, post it on Nextdoor, text it after every job.</p>
+        <div class="celebrate-url">handyjims.com/mike-rodriguez</div>
+        <div class="celebrate-actions">
+          <button class="mock-btn primary" style="margin-top: 12px;">
+            <span style="margin-right: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align: -2px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </span>
+            Save & Share Your Contact
+          </button>
+          <button class="mock-btn navy" style="margin-top: 0;">View My Page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 7: SHARE ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--red);">7</div>
+    <div class="screen-header-text">
+      <h2>Share Your Page Everywhere</h2>
+      <p>Text customers, post on Nextdoor, share on Facebook. One link does it all.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="mock-nav">
+        <span class="mock-nav-logo">Share Your Page</span>
+        <span class="mock-nav-step"></span>
+      </div>
+      <div class="mock-body">
+        <div class="share-method">
+          <div class="share-icon-circle contact">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          </div>
+          <div class="share-method-text">
+            <div class="share-method-title">Save & Share Contact Card</div>
+            <div class="share-method-desc">Downloads your vCard + opens native share</div>
+          </div>
+          <div class="share-method-arrow">›</div>
+        </div>
+        
+        <div class="share-method">
+          <div class="share-icon-circle text">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="share-method-text">
+            <div class="share-method-title">Text to a Customer</div>
+            <div class="share-method-desc">Pre-written message with your link</div>
+          </div>
+          <div class="share-method-arrow">›</div>
+        </div>
+        
+        <div class="share-method">
+          <div class="share-icon-circle nextdoor">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="share-method-text">
+            <div class="share-method-title">Post on Nextdoor</div>
+            <div class="share-method-desc">Ready-to-post copy for your neighborhood</div>
+          </div>
+          <div class="share-method-arrow">›</div>
+        </div>
+        
+        <div class="share-method">
+          <div class="share-icon-circle facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <div class="share-method-text">
+            <div class="share-method-title">Share on Facebook</div>
+            <div class="share-method-desc">Post with pre-written caption</div>
+          </div>
+          <div class="share-method-arrow">›</div>
+        </div>
+        
+        <div class="share-method">
+          <div class="share-icon-circle copy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </div>
+          <div class="share-method-text">
+            <div class="share-method-title">Copy Link</div>
+            <div class="share-method-desc">handyjims.com/mike-rodriguez</div>
+          </div>
+          <div class="share-method-arrow">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-connector"><div class="connector-arrow"></div></div>
+
+<!-- ===== SCREEN 8: DASHBOARD / GROWTH ===== -->
+<div class="screen-block">
+  <div class="screen-header">
+    <div class="screen-num" style="background: var(--amber);">8</div>
+    <div class="screen-header-text">
+      <h2>Your Dashboard — Watch It Grow</h2>
+      <p>Views, saves, shares, reviews. SMS nudges keep you active.</p>
+    </div>
+  </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="mock-nav">
+        <span class="mock-nav-logo">Dashboard</span>
+        <span class="mock-nav-step">mike-rodriguez</span>
+      </div>
+      <div class="mock-body">
+        <div class="dash-stat-row">
+          <div class="dash-stat">
+            <div class="dash-stat-num">47</div>
+            <div class="dash-stat-label">Views</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-num">12</div>
+            <div class="dash-stat-label">Saves</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-num">5</div>
+            <div class="dash-stat-label">Shares</div>
+          </div>
+        </div>
+        
+        <div class="dash-nudge">
+          <div class="dash-nudge-title">You have 0 reviews</div>
+          <div class="dash-nudge-text">Send a review request to your last customer. Verified reviews build trust fast.</div>
+        </div>
+        
+        <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Quick Actions</div>
+        
+        <div class="dash-action">
+          <div class="dash-action-icon" style="background: #fef3e5;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div class="dash-action-text">Add Photos</div>
+          <div class="dash-action-arrow">›</div>
+        </div>
+        <div class="dash-action">
+          <div class="dash-action-icon" style="background: #e8f5ee;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="dash-action-text">Request a Review</div>
+          <div class="dash-action-arrow">›</div>
+        </div>
+        <div class="dash-action">
+          <div class="dash-action-icon" style="background: #f3e8ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </div>
+          <div class="dash-action-text">Share Your Page</div>
+          <div class="dash-action-arrow">›</div>
+        </div>
+        <div class="dash-action">
+          <div class="dash-action-icon" style="background: #dbeafe;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="dash-action-text">Edit Profile</div>
+          <div class="dash-action-arrow">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- screens-section -->
+
+</div><!-- container -->
+
+<!-- ===== FOOTER ===== -->
+<div style="padding: 32px 20px; text-align: center; background: var(--navy);">
+  <div style="font-size: 15px; font-weight: 800; color: white; margin-bottom: 4px;">HandyJims</div>
+  <div style="font-size: 12px; color: rgba(255,255,255,.4);">Full Workflow — Signup to Live Page to Growth</div>
+  <div style="font-size: 11px; color: rgba(255,255,255,.3); margin-top: 8px;">Internal mockup document — not customer-facing</div>
+</div>
+
+</body>
+</html>
