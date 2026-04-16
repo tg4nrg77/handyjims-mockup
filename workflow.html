@@ -41,13 +41,23 @@ body {
   top: 0;
   z-index: 60;
   background: var(--navy);
-  padding: 14px 20px;
+  padding: 14px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
 .header-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--white);
   letter-spacing: -.3px;
@@ -58,28 +68,34 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 32px;
 }
 
 /* ===== FLOW DIAGRAM ===== */
 .diagram-section {
-  padding: 48px 0 32px;
+  padding: 56px 0 40px;
 }
 .diagram-section h1 {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 800;
   color: var(--navy);
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+}
+@media (max-width: 600px) {
+  .diagram-section h1 { font-size: 28px; }
 }
 .diagram-section > p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-500);
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Flow diagram — horizontal with connecting arrows */
@@ -133,16 +149,33 @@ body {
 .flow-icon.grow { background: var(--amber); color: white; }
 
 .flow-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--navy);
   text-align: center;
   line-height: 1.3;
 }
 .flow-time {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--gray-400);
-  margin-top: 2px;
+  margin-top: 3px;
+}
+@media (min-width: 768px) {
+  .flow-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 26px;
+    border-radius: 16px;
+  }
+  .flow-diagram::before {
+    top: 32px;
+  }
+  .flow-step + .flow-arrow + .flow-step::before {
+    top: 26px;
+  }
+  .flow-label {
+    font-size: 13px;
+  }
 }
 .flow-arrow {
   display: none;
@@ -163,38 +196,71 @@ body {
 
 /* ===== SCREEN MOCKUPS ===== */
 .screens-section {
-  padding: 32px 0 64px;
+  padding: 40px 0 64px;
 }
 .screen-block {
-  margin-bottom: 48px;
+  margin-bottom: 64px;
+}
+@media (min-width: 768px) {
+  .screen-block {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 80px;
+  }
+  .screen-block:nth-child(odd) {
+    grid-template-columns: 400px 1fr;
+  }
+  .screen-block:nth-child(odd) .screen-header {
+    order: 2;
+  }
+  .screen-block:nth-child(odd) .phone-frame {
+    order: 1;
+  }
 }
 .screen-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   margin-bottom: 20px;
 }
+@media (min-width: 768px) {
+  .screen-header {
+    flex-direction: column;
+    padding-top: 40px;
+    margin-bottom: 0;
+  }
+}
 .screen-num {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 800;
   color: white;
   flex-shrink: 0;
 }
 .screen-header-text h2 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -.3px;
 }
+@media (min-width: 768px) {
+  .screen-header-text h2 {
+    font-size: 28px;
+    letter-spacing: -.5px;
+  }
+}
 .screen-header-text p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--gray-500);
+  line-height: 1.6;
+  margin-top: 4px;
 }
 
 /* Phone frame for mockup screens */
@@ -610,6 +676,11 @@ body {
   justify-content: center;
   padding: 16px 0;
 }
+@media (min-width: 768px) {
+  .screen-connector {
+    display: none;
+  }
+}
 .connector-arrow {
   width: 2px;
   height: 40px;
@@ -725,9 +796,12 @@ body {
 
 <!-- ===== HEADER ===== -->
 <header class="header">
-  <div>
-    <div class="header-title">HandyJims — Full Workflow</div>
-    <div class="header-sub">Signup → Profile → Live Page → Growth</div>
+  <div class="header-left">
+    <img src="logo.jpg" alt="HandyJims" class="header-logo">
+    <div>
+      <div class="header-title">HandyJims</div>
+      <div class="header-sub">Full Workflow — Signup to Growth</div>
+    </div>
   </div>
 </header>
 
@@ -1246,10 +1320,11 @@ body {
 </div><!-- container -->
 
 <!-- ===== FOOTER ===== -->
-<div style="padding: 32px 20px; text-align: center; background: var(--navy);">
-  <div style="font-size: 15px; font-weight: 800; color: white; margin-bottom: 4px;">HandyJims</div>
-  <div style="font-size: 12px; color: rgba(255,255,255,.4);">Full Workflow — Signup to Live Page to Growth</div>
-  <div style="font-size: 11px; color: rgba(255,255,255,.3); margin-top: 8px;">Internal mockup document — not customer-facing</div>
+<div style="padding: 48px 32px; text-align: center; background: var(--navy);">
+  <img src="logo.jpg" alt="HandyJims" style="width: 48px; height: 48px; border-radius: 12px; margin-bottom: 12px;">
+  <div style="font-size: 18px; font-weight: 800; color: white; margin-bottom: 4px;">HandyJims</div>
+  <div style="font-size: 14px; color: rgba(255,255,255,.4);">Full Workflow — Signup to Live Page to Growth</div>
+  <div style="font-size: 12px; color: rgba(255,255,255,.25); margin-top: 12px;">Internal mockup document — not customer-facing</div>
 </div>
 
 </body>
